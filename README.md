@@ -101,7 +101,7 @@ Save the file, then close it. Now we're going to see one of the main functions
 of branches: that they track changes seperately. First we need to commit our
 changes to the branch.
 ```
-git commit -m "Add my message"
+git commit -am "Add my message"
 ```
 This adds a commit with our changes to the branch, with the commit message `Add
 my message`. It's important that commit messages are in the impertive tense.
