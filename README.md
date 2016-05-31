@@ -108,7 +108,7 @@ changes to the branch.
 git commit -am "Add my message"
 ```
 This adds a commit with our changes to the branch, with the commit message
-`Add my message`. The `-a` flage means we're adding all changes that we've made,
+`Add my message`. The `-a` flag means we're adding all changes that we've made,
 and the `-m` flag means we're setting our commit message in the quotes that
 follow. It's important that commit messages are in the impertive tense. So our 
 message says `Add my message`, not `Adding my message` or `Added my message`. 
@@ -140,7 +140,7 @@ Great! So now our branch is on the remote (origin) repository, but still aren't
 part of the master branch. This is where GitHub helps us our. Go to the
 repository page on GitHub, and create a "pull request". This is a request for me
 to "pull" the changes in your branch into the master branch. Once you have all
-done this, I'll pull them changes you've all made in, and all your messages will
+done this, I'll pull the changes you've all made in, and all your messages will
 appear in the copy of this README.md that appears on the github site.
 
 This process is how you'll make changes to the code, then submit them.
