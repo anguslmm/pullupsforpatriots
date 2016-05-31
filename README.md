@@ -5,6 +5,7 @@
 |_|  \_,_|_|_|  \___/| .__/__/ |_| \___/_|   |_| \__,_|\__|_| |_\___/\__/__/
                      |_|                                                    
 ```
+Ascii art made [here](http://patorjk.com/software/taag/#p=display&f=Small&t=Pull%20Ups%20for%20Patriots).
 
 This is the main repository for the [PullUpsForPatriots website](http://www.pullupsforpatriots.com "Pull Ups for Patriots").
 
