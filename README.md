@@ -95,7 +95,7 @@ Now for the changes you're making in your branch. Open this README.md in your
 locally cloned copy of the repository (inside cloud9), and add a message with 
 your name inside the quoted block below.
 ```
-
+What's up! -Angus
 ```
 Save the file, then close it. Now we're going to see one of the main functions
 of branches: that they track changes seperately. First we need to commit our
