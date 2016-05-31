@@ -103,10 +103,11 @@ changes to the branch.
 ```
 git commit -am "Add my message"
 ```
-This adds a commit with our changes to the branch, with the commit message `Add
-my message`. It's important that commit messages are in the impertive tense.
-So out message says `Add my message`, not `Adding my message` or 
-`Added my message`. 
+This adds a commit with our changes to the branch, with the commit message
+`Add my message`. The `-a` flage means we're adding all changes that we've made,
+and the `-m` flag means we're setting our commit message in the quotes that
+follow. It's important that commit messages are in the impertive tense. So our 
+message says `Add my message`, not `Adding my message` or `Added my message`. 
 
 Now check out the master branch, and you'll see that your message doesn't appear
 in the README.md anymore.
