@@ -7,6 +7,10 @@ class Marines(models.Model):
 class Donor(models.Model):
     name=models.CharField(max_length=200)
    
-# Sponsor model goes here (replace this line with it).
+class Sponsor(models.Model):
+    name = models.CharField(max_length=200)
+    logo = models.URLField(max_length=200)
+    site = models.URLField(max_length=200)
+    description = models.TextField(max_length=200)
 
 # Donation model goes here (replace this line with it).
