@@ -13,4 +13,10 @@ class Sponsor(models.Model):
     site = models.URLField(max_length=200)
     description = models.TextField(max_length=200)
 
-# Donation model goes here (replace this line with it).
+class Donation(models.Model):
+    marine = models.ForeignKey('Marines',on_delete=models.CASCADE)
+    amount = models.DecimalField('Amount Donated', max_digits=9, decimal_places=2)
+    donor = models.ForeignKey('Donor', on_delete=models.CASCADE)
+    message = models.TextField(max_length=500)
+    public = models.BooleanField(Default=True)
+    
