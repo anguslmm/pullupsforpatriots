@@ -30,5 +30,5 @@ class Donation(models.Model):
     public = models.BooleanField(Default=True)
     
     def _str_(self):
-        donation = (self.amount, 'to', self.marine)
+        donation = str(self.amount) + ' to ' + str(self.marine)
         return donation
