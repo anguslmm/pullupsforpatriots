@@ -18,17 +18,25 @@ class Sponsor(models.Model):
     logo = models.URLField(max_length=200)
     site = models.URLField(max_length=200)
     description = models.TextField(max_length=200)
+<<<<<<< HEAD
     
     def _str_(self):
         return self.name
     
+=======
+
+>>>>>>> master
 class Donation(models.Model):
     marine = models.ForeignKey('Marines',on_delete=models.CASCADE)
     amount = models.DecimalField('Amount Donated', max_digits=9, decimal_places=2)
     donor = models.ForeignKey('Donor', on_delete=models.CASCADE)
     message = models.TextField(max_length=500)
     public = models.BooleanField(Default=True)
+<<<<<<< HEAD
     
     def _str_(self):
         donation = str(self.amount) + ' to ' + str(self.marine)
         return donation
+=======
+    
+>>>>>>> master
