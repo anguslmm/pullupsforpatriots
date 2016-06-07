@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # pass any urls that include dynamic content off here.
+    url(r'^$', views.placeholder), 
+    url(r'^ourcause/$', views.placeholder), 
+    url(r'^contact/$', views.placeholder),
 ]
