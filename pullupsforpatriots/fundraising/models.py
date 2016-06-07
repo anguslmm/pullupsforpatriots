@@ -11,8 +11,8 @@ class Donor(models.Model):
 
 class Donation(models.Model):
     marine = models.ForeignKey('Marines',on_delete=models.CASCADE)
-    amount_donated = models.DecimalField('Amount Donated', max_digits=9, decimal_places=2)
+    amount = models.DecimalField('Amount Donated', max_digits=9, decimal_places=2)
     donor = models.ForeignKey('Donor', on_delete=models.CASCADE)
-    message = models.TextField(max_length=200)
+    message = models.TextField(max_length=500)
     public = models.BooleanField(Default=True)
     
