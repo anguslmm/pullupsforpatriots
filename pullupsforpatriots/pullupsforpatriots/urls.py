@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # pass any urls that include dynamic content off here.
+    url(r'^donations/', include('fundraising.urls')),
+    
+    
 ]
