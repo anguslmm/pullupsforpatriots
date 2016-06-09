@@ -22,23 +22,22 @@ environment and clone the git repository.
 
 ### Setting Up Your Environment.
 
-#### Switching from Python 2 to 3
+#### Switching default Python interpreter from Python 2.x to 3.x
 
-At the command line in
-cloud9, first delete the `python` alias, then create a new one to `python3`.
+We need to tell our command line to use python3 as the default, so we'll create
+an alias in our bash profile, then update the current terminal with the new
+setting. Issue the following in the command line of c9:
 
 ```
-$ sudo ln -sfn /usr/bin/python3 /usr/bin/python
+$ echo "alias python=python3" >> ~/.bashrc
+$ source ~/.bashrc
 ```
-Alternatively, if that didn't work:
-```
-$ sudo rm /usr/bin/python
-$ sudo ln -s /usr/bin/python3 /usr/bin/python
-```
+
 Then check to make sure it worked:
+
 ```
 $ python --version
-Python 3.4.3
+Python 3.x.x
 ```
 
 #### Getting the Newest Django
