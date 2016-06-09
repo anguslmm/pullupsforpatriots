@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^donations/', include('fundraising.urls')),
-    url(r'^$', views.placeholder), 
+    url(r'^$', views.homepage), 
     url(r'^ourcause/$', views.placeholder), 
     url(r'^contact/$', views.placeholder),
 ]
