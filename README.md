@@ -24,10 +24,13 @@ environment and clone the git repository.
 
 #### Switching default Python interpreter from Python 2.x to 3.x
 
-Issue the following in the command line of c9:
+We need to tell our command line to use python3 as the default, so we'll create
+an alias in our bash profile, then update the current terminal with the new
+setting. Issue the following in the command line of c9:
 
 ```
 $ echo "alias python=python3" >> ~/.bashrc
+$ source ~/.bashrc
 ```
 
 Then check to make sure it worked:
