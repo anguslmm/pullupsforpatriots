@@ -52,10 +52,12 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'pullupsforpatriots.urls'
 
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
