@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^donations/', include('fundraising.urls')),
     url(r'^$', views.placeholder), 
     url(r'^ourcause/$', views.placeholder), 
-    url(r'^contact/$', views.placeholder),
+    url(r'^contact/$', views.ContactsView, name='contacts'),
 ]
