@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
+
+class IndexView(generic.ListView):
+    template_name = 'template/index.html'
     
 class OurGoalView(generic.ListView):
     template_name = 'template/ourgoal.html'
