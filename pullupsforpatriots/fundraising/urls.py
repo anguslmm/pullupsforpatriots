@@ -3,11 +3,11 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.placeholder, name='index'),
-    url(r'^ourgoal/$', views.placeholder, name='ourgoal'),
-    url(r'^marines/$', views.placeholder, name='marines'),
-    url(r'^marines/search/$', views.placeholder, name='marines'),
-    url(r'^marines/all/$', views.placeholder, name='marines'),
-    url(r'^marines/(?P<pk>[0-9]+)/$', views.placeholder, name='marines'),
-    url(r'^sponsors/$', views.placeholder, name='sponsors'),
-    url(r'^donors/$', views.placeholder, name='donors'),
+    url(r'^ourgoal/$', views.OurGoalView, name='ourgoal'),
+    url(r'^marines/$', views.MarinesView, name='marines'),
+    url(r'^marines/search/$', views.MarinesView, name='marines'),
+    url(r'^marines/all/$', views.MarinesView, name='marines'),
+    url(r'^marines/(?P<pk>[0-9]+)/$', views.MarinesView, name='marines'),
+    url(r'^sponsors/$', views.SponsorsView, name='sponsors'),
+    url(r'^donors/$', views.DonorsView, name='donors'),
     ]

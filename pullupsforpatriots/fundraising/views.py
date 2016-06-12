@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
-
-def placeholder(request, pk=0):
-    return HttpResponse("Hello, world. This is a placeholder view."
     
 class OurGoalView(generic.ListView):
     template_name = 'template/ourgoal.html'
     
-class MarinesView(generic.DetailedView):
+class MarinesView(generic.ListView):
     template_name = 'template/marines.html'
+    search_fileds = ['marine.id']
+    fieldsets = [
+        (None, {'fields': ['marine.id']}),
+    ]
     
-class SponsorView(generic.ListView):
+class SponsorsView(generic.ListView):
     template_name = 'template/sponsor.html'
 
 class DonorsView(generic.ListView):
