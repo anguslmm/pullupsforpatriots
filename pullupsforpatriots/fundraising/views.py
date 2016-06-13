@@ -8,7 +8,8 @@ class IndexView(generic.ListView):
 class OurGoalView(generic.ListView):
     template_name = 'template/ourgoal.html'
     
-class MarinesView(generic.ListView):
+class MarineView(generic.ListView):
+    model = Marine
     template_name = 'template/marines.html'
     search_fileds = ['marine.id']
     fieldsets = [
