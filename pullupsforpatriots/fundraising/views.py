@@ -13,10 +13,6 @@ class OurGoalView(generic.ListView):
 class MarinesView(generic.ListView):
     model = Marines
     template_name = 'template/marines.html'
-    search_fileds = ['marine.id']
-    fieldsets = [
-        (None, {'fields': ['marine.id']}),
-    ]
     
 class SponsorsView(generic.ListView):
     template_name = 'template/sponsor.html'
