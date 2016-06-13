@@ -2,14 +2,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 
+from .models import Marines
+
 class IndexView(generic.ListView):
     template_name = 'template/index.html'
     
 class OurGoalView(generic.ListView):
     template_name = 'template/ourgoal.html'
     
-class MarineView(generic.ListView):
-    model = Marine
+class MarinesView(generic.ListView):
+    model = Marines
     template_name = 'template/marines.html'
     search_fileds = ['marine.id']
     fieldsets = [
