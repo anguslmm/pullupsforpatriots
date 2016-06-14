@@ -33,3 +33,4 @@ class Donation(models.Model):
         donation = str(self.amount) + ' to ' + str(self.marine)
         return donation
 
+
