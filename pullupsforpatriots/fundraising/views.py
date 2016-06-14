@@ -11,17 +11,18 @@ class MarineView(generic.DetailView):
     model = Marine
     template = "marine.html"
 
-class IndexView(generic.DetailView):
-    template_name = 'template/index.html'
+def ourgoal(request):
+    return render(request, 'fundraising/ourgoal.html')
     
-class OurGoalView(generic.DetailView):
-    template_name = 'template/ourgoal.html'
+def index(request):
+    return render(request, 'fundraising/index.html')
     
-class SponsorsView(generic.DetailView):
+    
+class SponsorsView(generic.ListView):
     model = Sponsor
-    template_name = 'template/sponsor.html'
+    template_name = 'sponsor_list.html'
 
-class DonorsView(generic.DetailView):
+class DonorsView(generic.ListView):
     model = Donation
-    template_name = 'template/donors.html'
+    template_name = 'donations_list.html'
     
