@@ -11,11 +11,19 @@ This document details the structure of the models and their relationships.
 It is currently formatted by my arbitrary standards. If anyone discovers a
 better way to do this, please let me know and I'll change it.
 
-## Marine
+## Command
 |Attribute   |Type      |Description                                           |
+|------------|:--------:|-----------------------------------------------------:|
+|Name        |String    |Name of the Command
+|PersonTerm  |String    |Term for service members at this command (e.g. sailor)
+|PersonPlural|String    |Plural form of PersonTerm (e.g. sailors)
+
+## Marine
+|Attribute   |Type      |Description                                        |
 |------------|:--------:|-----------------------------------------------------:|
 |Name        |String    |Name of the Marine
 |AmountRaised|Decimal   |Amount raised in dollars, generated from donations
+|Command     |ForeignKey|The service member's command                          
 
 ## Donation
 |Attribute   |Type      |Description                                           |
