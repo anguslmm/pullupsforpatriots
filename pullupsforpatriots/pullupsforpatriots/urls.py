@@ -18,9 +18,8 @@ from django.conf.urls import include, url
 from . import views
 
 urlpatterns = [
+    url(r'^$', views.homepage),
     url(r'^admin/', admin.site.urls),
-    url(r'^donations/', include('fundraising.urls')),
-    url(r'^$', views.homepage), 
-    url(r'^ourcause/$', views.placeholder), 
-    url(r'^contact/$', views.contacts, name='contacts'),
+    url(r'^ourcause/$', views.placeholder),
+    url(r'^fundraising/', include('fundraising.urls')),
 ]

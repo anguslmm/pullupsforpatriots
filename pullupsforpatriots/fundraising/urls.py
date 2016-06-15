@@ -3,11 +3,13 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^ourgoal/$', views.ourgoal, name='ourgoal'),
-    url(r'^marines/$', views.MarineView, name='marines'),
-    url(r'^marines/search/$', views.MarineView, name='marines-search'),
-    url(r'^marines/all/$', views.MarineView, name='marines-all'),
-    url(r'^marines/(?P<pk>[0-9]+)/$', views.MarineView.as_view(), name='marines-detail'),
     url(r'^sponsors/$', views.SponsorsView.as_view(), name='sponsors'),
-    url(r'^donors/$', views.DonorsView.as_view(), name='donors'),
+    url(r'^companyd/$', views.companyd, name='companyd'),
+    url(r'^companyd/search/$', views.companyd, name='companyd-search'),
+    url(r'^companyd/all/$', views.companyd, name='companyd-all'),
+    url(r'^companyd/about/$', views.companyd, name='companyd-about'),
+    url(r'^niocga/$', views.niocga, name='niocga'),
+    url(r'^niocga/search/$', views.niocga, name='niocga-search'),
+    url(r'^niocga/all/$', views.niocga, name='niocga-all'),
+    url(r'^niocga/about/$', views.niocga, name='niocga-about'),
     ]

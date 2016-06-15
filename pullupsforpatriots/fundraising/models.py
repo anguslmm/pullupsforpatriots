@@ -1,8 +1,17 @@
 from django.db import models
 
+class Command(models.Model):
+    name = models.CharField(max_length=200)
+    personterm = models.CharField(max_length=200)
+    personplural = models.CharField(max_length=200)
+    
+    def _str_(self):
+        return self.name
+
 class Marine(models.Model):
     name = models.CharField(max_length=200)
     amount_raised = models.DecimalField('Amount Raised', max_digits=9, decimal_places=2)
+    command = models.ForeignKey('Command',on_delete=models.CASCADE, default = "")
     
     def _str_(self):
         return self.name

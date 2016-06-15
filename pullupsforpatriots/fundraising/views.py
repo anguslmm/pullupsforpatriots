@@ -6,23 +6,17 @@ from .models import Marine, Sponsor, Donation
 
 def placeholder(request):
     return HttpResponse("This is a placeholder.")
-
-class MarineView(generic.DetailView):
-    model = Marine
-    template = "marine.html"
-
-def ourgoal(request):
-    return render(request, 'fundraising/ourgoal.html')
+    
+def companyd(request):
+    return render(request, 'fundraising/companyd.html')
+    
+def niocga(request):
+    return render(request, 'fundraising/niocga.html')
     
 def index(request):
     return render(request, 'fundraising/index.html')
     
-    
 class SponsorsView(generic.ListView):
     model = Sponsor
     template_name = 'sponsor_list.html'
-
-class DonorsView(generic.ListView):
-    model = Donation
-    template_name = 'donations_list.html'
     

@@ -5,9 +5,8 @@ from django.views import generic
 def placeholder(request):
     return HttpResponse("Hello, world. This is a placeholder view.")
     
-def contacts(request):
-    return render(request, 'contacts.html')
+def ourcause(request):
+    return render(request, 'ourcause.html')
 
 def homepage(request):
     return render(request, 'homepage.html')
-
