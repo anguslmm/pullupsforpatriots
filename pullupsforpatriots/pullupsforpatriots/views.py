@@ -6,3 +6,6 @@ def placeholder(request):
     
 def homepage(request):
     return render(request, 'homepage.html')
+
+def ourcause(request):
+    return render(request, 'ourcause.html')
