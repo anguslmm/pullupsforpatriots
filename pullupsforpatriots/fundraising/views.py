@@ -2,11 +2,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 
-from .models import Marine
+from .models import Marine, Sponsor, Donation
 
-class MarineView(generic.DetailView):
-    model = Marine
-    template = "marine.html"
-
-def placeholder(request, pk=0):
-    return HttpResponse("Hello, world. This is a placeholder view.")
+def placeholder(request):
+    return HttpResponse("This is a placeholder.")
+    
+def companyd(request):
+    return render(request, 'fundraising/companyd.html')
+    
+def niocga(request):
+    return render(request, 'fundraising/niocga.html')
+    
+def index(request):
+    return render(request, 'fundraising/index.html')
+    
+class SponsorsView(generic.ListView):
+    model = Sponsor
+    template_name = 'sponsor_list.html'
+    
