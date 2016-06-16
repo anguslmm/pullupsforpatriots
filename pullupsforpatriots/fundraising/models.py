@@ -11,7 +11,7 @@ class Command(models.Model):
 class Marine(models.Model):
     name = models.CharField(max_length=200)
     amount_raised = models.DecimalField('Amount Raised', max_digits=9, decimal_places=2)
-    command = models.ForeignKey('Command',on_delete=models.CASCADE, default = "")
+    command = models.ForeignKey('Command',on_delete=models.CASCADE, default=0)
     
     def _str_(self):
         return self.name
