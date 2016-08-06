@@ -1,0 +1,10 @@
+
+{% url 'donation_congrats' donation.id as confirm_url %}
+
+<h1>Confirm the donation.</h1>
+
+{{donation.donor_name}}
+{{donation.donor_email}}
+{{donation.amount}}
+
+<a href="{{ confirm_url }}">Confirm my donation.</a>
