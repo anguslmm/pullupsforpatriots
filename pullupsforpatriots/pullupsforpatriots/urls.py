@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^donations/', include('fundraising.urls'), name="donations"),
     url(r'^ourcause/$', views.ourcause, name="ourcause"), 
-    url(r'^contact/$', views.placeholder, name="contact"),
+    url(r'^contact/$', views.contact, name="contact"),
     url(r'^css/modern-business.css$', views.moderncss),
     url(r'^css/custom.css$', views.customcss),
     url(r'^css/font-awesome.min.css$', views.facss),

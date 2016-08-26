@@ -53,13 +53,13 @@
                     <a href="{% url 'home' %}">Home</a>
                 </li>
                 <li>
-                    <a href="#ourcause">Our Cause</a>
+                    <a href="{% url 'home' %}#ourcause">Our Cause</a>
                 </li>
                 <li>
                     <a href="{% url 'contact' %}">Contact</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Commands <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Military Units<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="{{ request.base_url }}/donations/niocga">NIOC Georgia</a>
@@ -79,9 +79,9 @@
     </div>
     <!-- /.container -->
 </nav>
-
+<div class="container">
 {% block content %}{% endblock %}
-
+</div>
 <!-- jQuery -->
 <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
 

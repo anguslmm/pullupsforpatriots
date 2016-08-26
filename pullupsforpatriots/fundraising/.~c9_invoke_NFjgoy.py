@@ -16,14 +16,11 @@ def placeholder(request):
     
 def companyd(request):
     marines = Marine.objects.filter(command = Command.objects.filter(name='Company D')[0]).order_by('-amount_raised')[:10]
-    donations = Donation.objects.filter(marine__command = Command.objects.filter(name='Company D')[0], status="PAID")
-    pledges = Pledges.objects.filter(marine__command = Command.objects.filter(name='Company D')[0], status="PAID")
+    donations = Donation.objects.filter(service_member__command = Command.objects.filter(name='Company D')[0])
     donation_goal = 10000.00
     donation_total = float(0)
     for donation in donations:
         donation_total += float(donation.amount)
-    for pledge in pledges:
-        donation_total += float(pledge.amount_paid)
     donation_progress = donation_total / donation_goal    
     form = SearchForm()
     return render(request, 'fundraising/companyd.html', {'marines' : marines, 'donation_total': donation_total, 'donation_progress': donation_progress, 'form' : form })
@@ -89,7 +86,7 @@ def donation_confirm(request):
     response = paypal_request(params)
     
     donation = Donation(
-        marine=marine,
+        service_member=marine,
         amount = response['PAYMENTREQUEST_0_AMT'],
         donor_name = response['SHIPTONAME'],
         donor_email = response['EMAIL'],
@@ -114,7 +111,7 @@ def pledge_confirm(request):
     response = paypal_request(params)
     
     pledge = Pledge(
-        marine=marine,
+        service_member=marine,
         amount_per_pullup = request.GET.get('amount_per_pullup', ''),
         donor_name = response['SHIPTONAME'],
         donor_email = response['EMAIL'],

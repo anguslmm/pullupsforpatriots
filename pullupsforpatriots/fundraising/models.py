@@ -33,7 +33,7 @@ class Sponsor(models.Model):
         return str(self.name)
 
 class Donation(models.Model):
-    service_member = models.ForeignKey('Marine',on_delete=models.CASCADE)
+    marine = models.ForeignKey('Marine',on_delete=models.CASCADE)
     amount = models.DecimalField('Amount Donated', max_digits=9, decimal_places=2)
     donor_name = models.CharField(max_length=200)
     donor_email = models.EmailField()
@@ -48,7 +48,7 @@ class Donation(models.Model):
 
 
 class Pledge(models.Model):
-    service_member = models.ForeignKey('Marine',on_delete=models.CASCADE)
+    marine = models.ForeignKey('Marine',on_delete=models.CASCADE)
     amount_per_pullup = models.DecimalField('Amount Pledged Per Pullup', max_digits=9, decimal_places=2)
     donor_name = models.CharField(max_length=200)
     donor_email = models.EmailField()
@@ -58,6 +58,7 @@ class Pledge(models.Model):
     status = models.CharField(max_length=10) # INIT, INFO, or PAID
     billing_agreement_id = models.CharField(max_length=50)
     amount_paid = models.DecimalField('Amount Paid', max_digits=9, decimal_places=2, default=0)
+    amount = models.DecimalField(decimal_places=2, max_digits=9, default=0) # this is a straight up bandaid. Sorry.
     
     def __str__(self):
         donation = str(self.amount) + ' for every pull up ' + str(self.marine) + 'does.'
