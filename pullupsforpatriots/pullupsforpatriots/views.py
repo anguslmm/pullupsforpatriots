@@ -11,5 +11,11 @@ def ourcause(request):
 def homepage(request):
     return render(request, 'homepage.html')
 
-def ourcause(request):
-    return render(request, 'ourcause.html')
+def moderncss(request):
+    return render(request, 'modern-business.css', content_type='text/css')
+    
+def facss(request):
+    return render(request, 'font-awesome.min.css', content_type='text/css')
+    
+def customcss(request):
+    return render(request, 'custom.css', content_type='text/css')

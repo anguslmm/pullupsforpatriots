@@ -1,1 +1,210 @@
-<p> This is our home page homie.</p>
+{% extends "base.html" %}
+
+{% block title %}Pull ups for Patriots | Home{% endblock %}
+
+{% block content %}
+
+
+<!-- Page Content -->
+<div class="container">
+<div class="row" style="margin-top:50px">
+    <div class="panel panel-default">
+        <div class="panel-body">
+    <div class="col-md-4" style="margin-bottom:20px">
+
+    <!--beginning of carousel-->
+
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img class="center-block img-rounded" src="https://static.wixstatic.com/media/189cda_deb283ed289547a1999aea96555a8d91.jpg/v1/fill/w_292,h_349,al_c,q_80,usm_0.66_1.00_0.01/189cda_deb283ed289547a1999aea96555a8d91.jpg" alt="Chania">
+            </div>
+
+            <div class="item">
+              <img class="center-block img-rounded" src="https://static.wixstatic.com/media/189cda_2da33af57a86464fb323a63e64e0bdb1.jpg/v1/fill/w_292,h_349,al_c,q_80,usm_0.66_1.00_0.01/189cda_2da33af57a86464fb323a63e64e0bdb1.jpg" alt="Chania">
+            </div>
+
+            <div class="item">
+              <img class="center-block img-rounded" src="https://static.wixstatic.com/media/189cda_13d4b193c1ee4cfdb01f60833f301df5.jpg/v1/fill/w_292,h_349,al_c,q_80,usm_0.66_1.00_0.01/189cda_13d4b193c1ee4cfdb01f60833f301df5.jpg" alt="Flower">
+            </div>
+          </div>
+
+          
+        </div>
+
+<!--end of carousel-->  
+
+    </div>
+    <div class="col-md-8">
+        <p>
+            Pull-ups for Patriots is a charity event being held to raise money for Hope For The Warriors,
+            Augusta Warrior Project, and several non-profit organizations that benefit servicemen and
+            women stationed at Fort Gordon, GA. A pull-up competition between participating
+            servicemembers will take place at CrossFit Good Vibes in Grovetown, GA on Saturday, October
+            1, 2016 from 1000 to 1300. We will be competing to see who can do the most pull-ups in 3 max
+            sets during a 10 minute period, as well as seeing who can individually raise the most money for
+            charity.
+        </p>
+        <ul>
+            <li>Who: Marines from Company D and Marine Corps Detachment Fort Gordon, Sailors from
+            
+            NIOC GA, and Airmen from the 3 rd and 31 st Intelligence Squadrons</li>
+            
+            <li>What: Pull-Up Competition, 3 max sets in 10 min</li>
+            
+            <li>When: Saturday, October 1, 2016 from 1000 to 1300</li>
+            
+            <li>Where: CrossFit Good Vibes in Grovetown, Georgia</li>
+            
+            <li>Why: To Raise Money for Charity</li>
+        </ul>
+    </div>
+ </div>
+ </div>
+ </div>
+    <!-- Marketing Icons Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header text-center">
+                Select a command to donate or pledge!
+            </h1>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Company D</h4>
+                </div>
+                <div class="panel-body text-center">
+                    <img height="150" src="https://static.wixstatic.com/media/189cda_48ca7a9682c44d368719b4c06e6c0fb9.png/v1/fill/w_180,h_156,al_c,lg_1/189cda_48ca7a9682c44d368719b4c06e6c0fb9.png" alt="Company D" class="center-block img-rounded"></img>
+                    <p>The original pull-uppers defending their title as champions this year.</p>
+                    <a href="donations/companyd" class="btn btn-default">Donate or Pledge</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>NIOC Georgia</h4>
+                </div>
+                <div class="panel-body text-center">
+                    <img height="150" src="https://m.discgolfscene.com/logos/clubs/1780/nioc-ga-command-recreation-990f9f373666.jpg" alt="NIOC GA" class="center-block img-rounded"></img>
+                    <p>A challanger appears! Can the Navy beat their Marine brothers?</p>
+                    <a href="donations/niocga" class="btn btn-default">Donate or Pledge</a>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Air Force</h4>
+                </div>
+                <div class="panel-body">
+                    <p>They've turned off the jets, and are perpared to gain serious altitude with nothing by raw strength.</p>
+                    <a href="donations/airforce" class="btn btn-default">Donate or Pledge</a>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <!-- /.row -->
+
+    <!-- Portfolio Section --
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Portfolio Heading</h2>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="portfolio-item.html">
+                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+            </a>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Features Section -->
+    <div id="ourcause" class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Our Cause</h2>
+        </div>
+        <div class="col-md-6">
+            <p>A full 50% of proceeds will go to Hope for the Warriors, with the rest covering the cost of the event and funding the Company D Command Association.</p>
+
+            <p>From the Hope for the Warriors website:</p>
+
+            <h4>Mission</h4>
+            <p>We believe those touched by military service can succeed at home by restoring their sense of self, family, and hope. Nationally, Hope For The Warriors® provides comprehensive support programs for service members, veterans, and military families that are focused on transition, health and wellness, peer engagement, and connections to community resources.</p>
+
+            <h4>Populations Served</h4>
+            <p>All Hope For The Warriors® programs serve post-9/11 active duty, National Guard, and reserve service members and veterans from all branches of the military. Programs also support the entire military family, families of the fallen, and military caregivers.</p>
+
+            <p>More info can be found on <a href="www.hopeforthewarriors.org">the Hope for the Warriors website.</a></p>
+
+            <p>The Company D Command Association is a nonprofit organization (§501(c)(3) status) that exists to benefit members of the Association and other charitable organizations. Their main purpose is to provide funding for events and activities for the Marines of Company D as well as making donations to organizations such as HFTW or Toys for Tots.</p>
+        </div>
+        <div class="col-md-6">
+            <a href="http://www.hopeforthewarriors.org"><img class="img-responsive" style="margin: auto;" src="http://www.hopeforthewarriors.org/wp-content/uploads/2016/05/logo.png" alt="Hope for the Warriors"></a>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Call to Action Section ->
+    <div class="well">
+        <div class="row">
+            <div class="col-md-8">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Pull-ups for Patriots 2016</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+{% endblock %}

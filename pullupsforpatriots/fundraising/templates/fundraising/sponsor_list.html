@@ -1,1 +1,29 @@
-<h>This is the Sponors page.</h>
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Sponsors {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <h2>Sponsors</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <h4>These are our current sponsors. We're always looking for more! For more information, please <a href="{% url 'contact' %}">contact us!</a></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <ul class="list-group">
+            {% for sponsor in sponsors %}
+            <li class="list-group-item">
+                <div class="list-group-item-heading text-center"><h4><a href="{{ sponsor.site }}">{{ sponsor.name }}</a></h4></div>
+                <div class="row">
+                    <div class="col-md-3"><a href="{{ sponsor.site }}"><img class="img-rounded center-block" src="{{ sponsor.logo }}"/></a></div>
+                    <div class="col-md-9">{{ sponsor.description }}</div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Company D {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <h2>Thank you for pledging!</h2>
+        <h3>Please enter the amount you'd like to pledge to donate per pullup that {{ marine.name }} does:</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-4 col-md-4 text-center">
+        <form method="POST" action="{% url 'start_pledge' marine.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Donate!">
+        </form>
+    </div>
+</div>
+{% endblock %}

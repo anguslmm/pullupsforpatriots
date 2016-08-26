@@ -1,5 +1,11 @@
-<h1>Congrats, you donated.</h1>
 
-{{donation.donor_name}}
-{{donation.donor_email}}
-{{donation.amount}}
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Company D {% endblock %}
+{% block content %}
+{% url 'donation_congrats' donation.id as confirm_url %}
+<br/><br/><br/>
+<div class="row"><div class="col-md-offset-3 col-md-6 text-center">
+    <h1>Thank you for donating!</h1>
+<br/>
+<a class="btn btn-primary" href="{% url 'home' %}">Go home.</a></div></div>
+{% endblock %}

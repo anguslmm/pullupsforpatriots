@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.views import generic
-from django.template import Context
+from django.views.decorators.csrf import csrf_protect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django import forms
 
 import urllib.request, urllib.parse
 
-from .models import Marine, Sponsor, Donation, Pledge
+from .models import Marine, Sponsor, Donation, Pledge, Command
 
 base_url = "https://pull-ups-for-patriots-anguslmm.c9users.io/donations/"
 
@@ -13,26 +15,38 @@ def placeholder(request):
     return HttpResponse("This is a placeholder.")
     
 def companyd(request):
-    return render(request, 'fundraising/companyd.html')
+    marines = Marine.objects.filter(command = Command.objects.filter(name='Company D')[0]).order_by('-amount_raised')[:10]
+    form = SearchForm()
+    return render(request, 'fundraising/companyd.html', {'marines' : marines, 'form' : form })
     
 def niocga(request):
     return render(request, 'fundraising/niocga.html')
     
 def index(request):
     return render(request, 'fundraising/index.html')
+
+def donate(request, marine_id):
+    marine = get_object_or_404(Marine, pk=marine_id)
+    form = DonateForm()
+    return render(request, 'fundraising/donate.html', {'marine': marine, 'form' : form})
     
-def donation_start(request, marine_id, amount):
+def donation_start(request, marine_id):
     marine = get_object_or_404(Marine, pk=marine_id)
     params={'METHOD': 'SetExpressCheckout',
         'PAYMENTREQUEST_0_PAYMENTACTION':'SALE',
-        'PAYMENTREQUEST_0_AMT':amount,
+        'PAYMENTREQUEST_0_AMT': request.POST['amount'],
         'PAYMENTREQUEST_0_CURRENCYCODE':'USD',
         'cancelUrl':'http://www.google.com',
         'returnUrl': base_url + 'donationconfirm/?marine_id=' + str(marine_id)}
     response = paypal_request(params)
     return redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
+
+def pledge(request, marine_id):
+    marine = get_object_or_404(Marine, pk=marine_id)
+    form = PledgeForm()
+    return render(request, 'fundraising/pledge.html', {'marine': marine, 'form' : form})
     
-def pledge_start(request, marine_id, amount_per_pullup):
+def pledge_start(request, marine_id):
     marine = get_object_or_404(Marine, pk=marine_id)
     params={'METHOD': 'SetExpressCheckout',
         'PAYMENTREQUEST_0_PAYMENTACTION':'AUTHORIZATION',
@@ -41,7 +55,7 @@ def pledge_start(request, marine_id, amount_per_pullup):
         'L_BILLINGTYPE0':'MerchantInitiatedBillingSingleAgreement',
         'L_BILLINGAGREEMENTDESCRIPTION0':'PullUpsForPatriotsPledge',
         'cancelUrl':'http://www.google.com',
-        'returnUrl': base_url + 'pledgeconfirm/?marine_id=' + str(marine_id) + '&amount_per_pullup=' + str(amount_per_pullup)}
+        'returnUrl': base_url + 'pledgeconfirm/?marine_id=' + str(marine_id) + '&amount_per_pullup=' + request.POST['amount_per_pullup']}
     response = paypal_request(params)
     
     return redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
@@ -62,12 +76,14 @@ def donation_confirm(request):
         payer_id = response['PAYERID'],
         correlation_id = response['CORRELATIONID'],
         status = "INFO")
-        
-    donation.save()
-    context = Context({'donation' : donation
-    })
     
-    return render(request, 'fundraising/donationconfirm.html', context)
+    marine.amount_raised = float(marine.amount_raised) + float(response['PAYMENTREQUEST_0_AMT'])
+    
+    donation.save()
+    marine.save()
+    
+    return render(request, 'fundraising/donationconfirm.html', {'donation' : donation
+    })
     
 def pledge_confirm(request):
     marine = get_object_or_404(Marine, pk=int(request.GET.get('marine_id', '')))
@@ -87,10 +103,9 @@ def pledge_confirm(request):
         status = "INFO")
         
     pledge.save()
-    context = Context({'pledge' : pledge
-    })
     
-    return render(request, 'fundraising/pledgeconfirm.html', context)
+    return render(request, 'fundraising/pledgeconfirm.html', {'pledge' : pledge
+    })
     
 def donation_congrats(request, donation_id):
     donation = get_object_or_404(Donation, pk=donation_id)
@@ -106,8 +121,8 @@ def donation_congrats(request, donation_id):
     response = paypal_request(params)
     donation.status = 'PAID'
     donation.save()
-    context = Context({'donation' : donation})
-    return render(request, 'fundraising/donationcongrats.html', context)
+    
+    return render(request, 'fundraising/donationcongrats.html', {'donation' : donation})
     
 def pledge_congrats(request, pledge_id):
     pledge = get_object_or_404(Pledge, pk=pledge_id)
@@ -120,12 +135,12 @@ def pledge_congrats(request, pledge_id):
     
     pledge.billing_agreement_id = response['BILLINGAGREEMENTID']
     pledge.save()
-    context = Context({'pledge' : pledge})
-    return render(request, 'fundraising/pledgecongrats.html', context)
+    
+    return render(request, 'fundraising/pledgecongrats.html', {'pledge' : pledge})
 
-class SponsorsView(generic.ListView):
-    model = Sponsor
-    template_name = 'sponsor_list.html'
+def sponsors(request):
+    sponsors = Sponsor.objects.all()
+    return render(request, 'fundraising/sponsor_list.html', {'sponsors' : sponsors})
     
 def paypal_request(params):
     params.update({
@@ -143,3 +158,44 @@ def paypal_request(params):
     
     
     return return_values
+
+def view_all(request, command_id):
+    command = get_object_or_404(Command, pk=command_id)
+    marine_list = Marine.objects.filter(command=command)
+    sorted(marine_list, key=lambda a: a.get_last_name())
+    paginator = Paginator(marine_list, 25)
+    
+    form = SearchForm()
+    
+    page = request.GET.get('page')
+    try:
+        marines = paginator.page(page)
+    except PageNotAnInteger:
+        marines = paginator.page(1)
+    except EmptyPage:
+        marines = paginator.page(paginator.num_pages)
+        
+    return render(request, 'fundraising/view_all.html', {'marines' : marines, 'form' : form})
+
+def search(request):
+    marines = Marine.objects.filter(name__icontains=request.GET.get('terms', ''))
+    form = SearchForm()
+    return render(request, 'fundraising/search.html', {'marines' : marines, 'form' : form})
+
+def moderncss(request):
+    return render(request, 'fundraising/modern-business.css', content_type='text/css')
+    
+def facss(request):
+    return render(request, 'fundraising/font-awesome.min.css', content_type='text/css')
+    
+def customcss(request):
+    return render(request, 'fundraising/custom.css', content_type='text/css')
+    
+class DonateForm(forms.Form):
+    amount = forms.DecimalField(label="I would like to donate this much:", max_digits=9, decimal_places=2)
+    
+class PledgeForm(forms.Form):
+    amount_per_pullup = forms.DecimalField(label="I would like to donate this much per pull up:", max_digits=9, decimal_places=2)
+    
+class SearchForm(forms.Form):
+    terms = forms.CharField(label="Search for marines by name:")

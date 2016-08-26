@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r'^$', views.homepage),
+    url(r'^$', views.homepage, name="home"),
     url(r'^admin/', admin.site.urls),
-    url(r'^donations/', include('fundraising.urls')),
-    url(r'^ourcause/$', views.ourcause), 
-    url(r'^contact/$', views.placeholder),
+    url(r'^donations/', include('fundraising.urls'), name="donations"),
+    url(r'^ourcause/$', views.ourcause, name="ourcause"), 
+    url(r'^contact/$', views.placeholder, name="contact"),
+    url(r'^css/modern-business.css$', views.moderncss),
+    url(r'^css/custom.css$', views.customcss),
+    url(r'^css/font-awesome.min.css$', views.facss),
 ]
