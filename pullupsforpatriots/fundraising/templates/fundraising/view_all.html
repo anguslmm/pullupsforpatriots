@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Company D {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <h2>Welcome to Company D</h2>
+        <h3>All marines:</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <form method="GET" action="{% url 'search' %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <ul class="list-group">
+            {% for marine in marines %}
+            <li class="list-group-item row">
+                <span class="badge col-md-1">${{ marine.amount_raised }}</span>
+                <div class="col-md-5">{{ marine.name }}</div>
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                        <a href="{% url 'donate' marine.id %}" class="btn btn-primary">Donate</a>
+                        <a href="{% url 'pledge' marine.id %}" class="btn btn-primary">Pledge</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 text-center">
+        <div class="btn-group btn-group-sm" role="group">
+            {% if marines.has_previous %}
+                <a href="?page={{ marines.previous_page_number }}" class="btn btn-primary"><</a>
+            {% endif %}
+    
+                <a class="btn btn-default">Page {{ marines.number }} of {{ marines.paginator.num_pages }}</a>
+
+    
+            {% if marines.has_next %}
+                <a href="?page={{ marines.next_page_number }}" class="btn btn-primary">></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Pull ups for Patriots | Contact Us{% endblock %}
+
+{% block content %}
+
+<div class="row" style="margin-top:75px">
+    <div class="col-md-4 col-md-offset-2">
+        <h1>Contact Us</h1>
+        <h3>Event Coordinators</h3>
+<br/>
+<h4>Clifton Robertson</h4>
+<h5><a href="mailto:robertson@pullupsforpatriots.com">robertson@pullupsforpatriots.com</a></h5>
+<h5>Cell: 404-236-9453</h5>
+<br/>
+<h4>Nicholas Varner</h4>
+<h5><a href="mailto:varner.nicholas0@gmail.com">varner.nicholas0@gmail.com</a></h5>
+<br/>
+<h4>Deric John</h4>
+<h5><a href="mailto:wcsoccer2005@gmail.com">wcsoccer2005@gmail.com</a></h5>
+<br/>
+<a href="https://www.facebook.com/PullupsforPatriots/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/2000px-F_icon.svg.png" width=30px></a>
+<h6>(The Contact form to the right will send a message to info@pullupsforpatriots.com)</h6>
+    </div>
+    <div class="col-md-4">
+        <br/><br/><br/><br/><br/>
+        <form role="form" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

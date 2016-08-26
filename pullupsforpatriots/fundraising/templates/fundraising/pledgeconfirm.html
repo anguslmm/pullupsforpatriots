@@ -1,0 +1,10 @@
+
+{% url 'pledge_congrats' pledge.id as confirm_url %}
+
+<h1>Confirm the pledge.</h1>
+
+{{pledge.donor_name}}
+{{pledge.donor_email}}
+{{pledge.amount_per_pullup}}
+
+<a href="{{ confirm_url }}">Confirm my pledge.</a>

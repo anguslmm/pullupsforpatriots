@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Company D {% endblock %}
+{% block content %}
+{% url 'donation_congrats' donation.id as confirm_url %}
+<br/><br/><br/>
+<div class="row"><div class="col-md-offset-3 col-md-6 text-center">
+    <h1>Confirm the donation.</h1>
+
+"{{donation.donor_name}}" at email
+"{{donation.donor_email}}" is donating
+${{donation.amount}}
+<br/>
+<a class="btn btn-primary" href="{{ confirm_url }}">Confirm my donation.</a></div></div>
+{% endblock %}
