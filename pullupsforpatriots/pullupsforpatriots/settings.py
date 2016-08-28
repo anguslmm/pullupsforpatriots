@@ -79,17 +79,12 @@ WSGI_APPLICATION = 'pullupsforpatriots.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pufp',
-        'USER': 'ubuntu',
-        'PASSWORD': 'applew',
-        'HOST': 'localhost',
-        'PORT': '', 
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'anguslmm$pufp',
+        'USER': 'anguslmm',
+        'PASSWORD': 'applew111',
+        'HOST': 'anguslmm.mysql.pythonanywhere-services.com',
     }
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
 }
 
 

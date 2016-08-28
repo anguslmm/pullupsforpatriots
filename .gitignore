@@ -1,2 +1,5 @@
 *.sqlite3
 sendgrid.env
+myvenv*
+*__pycache__*
+
