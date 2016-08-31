@@ -29,7 +29,7 @@ class ContactForm(forms.Form):
 
 def placeholder(request):
     return HttpResponse("Hello, world. This is a placeholder view.")
-    
+
 def ourcause(request):
     return render(request, 'ourcause.html')
 
@@ -38,13 +38,13 @@ def homepage(request):
 
 def moderncss(request):
     return render(request, 'modern-business.css', content_type='text/css')
-    
+
 def facss(request):
     return render(request, 'font-awesome.min.css', content_type='text/css')
-    
+
 def customcss(request):
     return render(request, 'custom.css', content_type='text/css')
-    
+
 def contact(request):
     form_class = ContactForm
 
@@ -61,7 +61,7 @@ def contact(request):
             , '')
             form_content = request.POST.get('content', '')
 
-            # Email the profile with the 
+            # Email the profile with the
             # contact information
             template = get_template('contact_template.txt')
             context = {
@@ -84,7 +84,7 @@ def contact(request):
             sg = sendgrid.SendGridAPIClient(apikey='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')
             from_email = Email(contact_email)
             subject = "Contact Form message from PUfP"
-            to_email = Email("anguslmm@gmail.com")
+            to_email = Email("info@pullupsforpatriots.com")
             mail = Mail(from_email, subject, to_email, content)
             response=sg.client.mail.send.post(request_body=mail.get())
             print("RESPONSE:" + str(response.status_code))

@@ -9,7 +9,7 @@ import urllib.request, urllib.parse
 
 from .models import Marine, Sponsor, Donation, Pledge, Command
 
-base_url = "https://pull-ups-for-patriots-anguslmm.c9users.io/donations/"
+base_url = "http://www.pullupsforpatriots.com/donations/"
 
 def placeholder(request):
     return HttpResponse("This is a placeholder.")
@@ -49,7 +49,8 @@ def donation_start(request, marine_id):
             'cancelUrl':'http://www.google.com',
             'returnUrl': base_url + 'donationconfirm/?marine_id=' + str(marine_id)}
         response = paypal_request(params)
-        return redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
+        print(response)
+        return redirect("https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
     except:
         return redirect('donate', marine_id)
 
@@ -75,7 +76,7 @@ def pledge_start(request, marine_id):
                 'returnUrl': base_url + 'pledgeconfirm/?marine_id=' + str(marine_id) + '&amount_per_pullup=' + request.POST['amount_per_pullup']}
             response = paypal_request(params)
 
-            return redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
+            return redirect("https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token="+response["TOKEN"])
         else:
             return redirect('pledge', marine_id)
     except:
@@ -165,13 +166,13 @@ def sponsors(request):
 
 def paypal_request(params):
     params.update({
-        'USER': 'anguslmm_api1.gmail.com',
-        'PWD':'TLEPFZQW4KAC3XTX',
-        'SIGNATURE':'AxB4j059JJPICRcbFXrmLOtJzjWuAzJQj8.l1WxiSiz7cHqTjbSzhpYB',
+        'USER': 'info_api1.pullupsforpatriots.com',
+        'PWD':'K3ZC4NESL9XFUYPE',
+        'SIGNATURE':'A1lRe-nNZspBh9GjWxQ8ua-eHAJJAtfY26Eq7lsS8ut1p6fB8us-HmFg',
         'VERSION':'86'})
     data = urllib.parse.urlencode(params).encode('ascii')
 
-    with urllib.request.urlopen("https://api-3t.sandbox.paypal.com/nvp", data) as f:
+    with urllib.request.urlopen("https://api-3t.paypal.com/nvp", data) as f:
         # This line takes the response and turns it into a dictionary. It is magic, and I made it.
         # It is on one line because I am a fucking boss. If you can't read it, kiss my ass.
         # return_values = dict([[urllib.parse.unquote(a) for a in b] for b in [ a.split('=') for a in f.read().decode('utf-8').split('&')]])
