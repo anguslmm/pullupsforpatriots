@@ -61,6 +61,6 @@ class Pledge(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=9, default=0) # this is a straight up bandaid. Sorry.
     
     def __str__(self):
-        donation = str(self.amount) + ' for every pull up ' + str(self.marine) + 'does.'
+        donation = str(self.amount_per_pullup) + ' for every pull up ' + str(self.marine) + 'does.'
         return donation
 
