@@ -43,7 +43,7 @@ def af31st(request):
         donation_total += float(pledge.amount_paid)
     donation_progress = donation_total / donation_goal
     form = SearchForm()
-    return render(request, 'fundraising/companyd.html',
+    return render(request, 'fundraising/31stis.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
                    'form': form})
 
@@ -60,7 +60,7 @@ def af3rd(request):
         donation_total += float(pledge.amount_paid)
     donation_progress = donation_total / donation_goal
     form = SearchForm()
-    return render(request, 'fundraising/companyd.html',
+    return render(request, 'fundraising/3rdis.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
                    'form': form})
 
@@ -257,4 +257,4 @@ class PledgeForm(forms.Form):
     amount_per_pullup = forms.DecimalField(label="I would like to donate this much per pull up:", max_digits=9, decimal_places=2, required=True)
 
 class SearchForm(forms.Form):
-    terms = forms.CharField(label="Search for marines by name:", required=True)
+    terms = forms.CharField(label="Search for service members by name:", required=True)

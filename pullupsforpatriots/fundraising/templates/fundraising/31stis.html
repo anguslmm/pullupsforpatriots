@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Pull ups for Patriots | Company D {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-offset-3 col-md-2">
+        <!--<img class="img-responsive pull-right" src="https://static.wixstatic.com/media/189cda_48ca7a9682c44d368719b4c06e6c0fb9.png/v1/fill/w_180,h_156,al_c,lg_1/189cda_48ca7a9682c44d368719b4c06e6c0fb9.png">-->
+    </div>
+    <div class="col-md-2 text-center">
+        <br/>
+        <br/>
+        <h2>31st IS</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <h4 class="text-center">${{ donation_total|floatformat:2}}/$10000 raised so far!</h4>
+        <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="{{donation_progress|floatformat:2}}" aria-valuemin="0" aria-valuemax="100" style="min-width:4em;width: {{donation_progress|floatformat:2}}%;">
+    {{donation_progress|floatformat:2}}%
+  </div>
+</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        
+        <h3 class="text-center">Airmen with the most funds raised:</h3>
+        <ul class="list-group">
+            {% for marine in marines %}
+            <li class="list-group-item row">
+                <span class="badge col-md-1">${{ marine.amount_raised }}</span>
+                <div class="col-md-5">{{ marine.name }}</div>
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                        <a href="{% url 'donate' marine.id %}" class="btn btn-primary">Donate</a>
+                        <a href="{% url 'pledge' marine.id %}" class="btn btn-primary">Pledge</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 text-center">
+        <form method="GET" action="{% url 'search' %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Search">
+        </form>
+        <a href="{% url 'view_all' 1 %}">View all Airmen in the 31st IS.</a>
+    </div>
+</div>
+{% endblock %}
