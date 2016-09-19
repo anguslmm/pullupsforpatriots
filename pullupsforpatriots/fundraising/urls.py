@@ -1,4 +1,4 @@
-from django.conf.urls import  url
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
@@ -7,8 +7,8 @@ urlpatterns = [
     url(r'^search', views.search, name='search'),
     url(r'^sponsors/$', views.sponsors, name='sponsors'),
     url(r'^companyd/$', views.companyd, name='companyd'),
-    url(r'^3rdIS/$', views.af3rd(), name='3rdIS'),
-    url(r'^31stIS/$', views.af31st(), name='31stIS'),
+    url(r'^3rdIS/$', views.af3rd, name='3rdIS'),
+    url(r'^31stIS/$', views.af31st, name='31stIS'),
     url(r'^donate/(?P<marine_id>[0-9]+)$', views.donate, name='donate'),
     url(r'^startdonation/(?P<marine_id>[0-9]+)$', views.donation_start, name='start_donation'),
     url(r'^donationconfirm', views.donation_confirm, name='donation_confirm'),
