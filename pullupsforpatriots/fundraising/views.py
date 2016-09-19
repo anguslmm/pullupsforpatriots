@@ -234,7 +234,7 @@ def view_all(request, command_id):
     except EmptyPage:
         marines = paginator.page(paginator.num_pages)
 
-    return render(request, 'fundraising/view_all.html', {'marines' : marines, 'form' : form})
+    return render(request, 'fundraising/view_all.html', {'marines' : marines, 'form' : form, 'command': command})
 
 def search(request):
     marines = Marine.objects.filter(name__icontains=request.GET.get('terms', ''))
