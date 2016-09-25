@@ -24,7 +24,7 @@ def companyd(request):
         donation_total += float(donation.amount)
     for pledge in pledges:
         donation_total += float(pledge.amount_paid)
-    donation_progress = donation_total / donation_goal
+    donation_progress = (donation_total / donation_goal)*100
     form = SearchForm()
     return render(request, 'fundraising/companyd.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
@@ -41,7 +41,7 @@ def af31st(request):
         donation_total += float(donation.amount)
     for pledge in pledges:
         donation_total += float(pledge.amount_paid)
-    donation_progress = donation_total / donation_goal
+    donation_progress = (donation_total / donation_goal)*100
     form = SearchForm()
     return render(request, 'fundraising/31stis.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
@@ -58,7 +58,7 @@ def af3rd(request):
         donation_total += float(donation.amount)
     for pledge in pledges:
         donation_total += float(pledge.amount_paid)
-    donation_progress = donation_total / donation_goal
+    donation_progress = (donation_total / donation_goal)*100
     form = SearchForm()
     return render(request, 'fundraising/3rdis.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
