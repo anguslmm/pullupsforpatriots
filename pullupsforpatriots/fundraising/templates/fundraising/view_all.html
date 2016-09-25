@@ -21,9 +21,9 @@
         <ul class="list-group">
             {% for marine in marines %}
             <li class="list-group-item row">
-                <span class="badge col-md-1">${{ marine.amount_raised }}</span>
+                <span class="badge col-md-3">${{ marine.amount_raised }}|${{ marine.get_amount_per_pullup }} per pull up</span>
                 <div class="col-md-5">{{ marine.name }}</div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="btn-group btn-group-xs" role="group" aria-label="...">
                         <a href="{% url 'donate' marine.id %}" class="btn btn-primary">Donate</a>
                         <a href="{% url 'pledge' marine.id %}" class="btn btn-primary">Pledge</a>
