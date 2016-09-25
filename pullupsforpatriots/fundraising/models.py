@@ -20,7 +20,7 @@ class Marine(models.Model):
         return str(self.name)
 
     def get_amount_per_pullup(self):
-        return Pledge.objects.filter(marine__name=self.name).aggregate(models.Sum('amount_per_pullup'))
+        return Pledge.objects.filter(marine__name=self.name).aggregate(models.Sum('amount_per_pullup'))['amount_per_pullup__sum']
     
     def __str__(self):
         return str(self.name)
