@@ -18,6 +18,9 @@ class Marine(models.Model):
         if (len(str(self.name).split()) > 1):
             return str(self.name).split()[1][:-1]
         return str(self.name)
+
+    def get_amount_per_pullup(self):
+        return Pledge.objects.filter(marine__name=self.name).aggregate(models.Sum('amount_per_pullup'))
     
     def __str__(self):
         return str(self.name)
