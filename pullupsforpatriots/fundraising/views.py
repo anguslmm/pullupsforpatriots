@@ -46,7 +46,7 @@ def mcd(request):
         donation_total += float(pledge.amount_paid)
     donation_progress = (donation_total / donation_goal) * 100
     form = SearchForm()
-    return render(request, 'fundraising/companyd.html',
+    return render(request, 'fundraising/mcd.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
                    'form': form})
 
