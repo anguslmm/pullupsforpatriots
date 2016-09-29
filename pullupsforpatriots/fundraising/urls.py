@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^search', views.search, name='search'),
     url(r'^sponsors/$', views.sponsors, name='sponsors'),
     url(r'^companyd/$', views.companyd, name='companyd'),
+    url(r'^mcd/$', views.mcd, name='mcd'),
     url(r'^3rdIS/$', views.af3rd, name='3rdIS'),
     url(r'^31stIS/$', views.af31st, name='31stIS'),
     url(r'^donate/(?P<marine_id>[0-9]+)$', views.donate, name='donate'),
