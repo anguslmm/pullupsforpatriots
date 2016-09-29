@@ -36,8 +36,8 @@ def companyd(request):
 def mcd(request):
     marines = Marine.objects.filter(command=Command.objects.filter(name='Marine Corps Detachment')[0]).order_by(
         '-amount_raised')[:10]
-    donations = Donation.objects.filter(marine__command=Command.objects.filter(name='Company D')[0], status="PAID")
-    pledges = Pledge.objects.filter(marine__command=Command.objects.filter(name='Company D')[0], status="PAID")
+    donations = Donation.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0], status="PAID")
+    pledges = Pledge.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0], status="PAID")
     donation_goal = 10000.00
     donation_total = float(0)
     for donation in donations:
