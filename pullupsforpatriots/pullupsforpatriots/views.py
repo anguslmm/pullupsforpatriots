@@ -81,7 +81,7 @@ def contact(request):
             #email.send()
             print(content, contact_email)
             #send_mail("New contact form submission", content, "anguslmmclean@gmail.com", ['anguslmm@gmail.com'], fail_silently=False)
-            sg = sendgrid.SendGridAPIClient(apikey='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')
+            sg = sendgrid.SendGridAPIClient(apikey=open('apikey.txt', 'r').read())
             from_email = Email(contact_email)
             subject = "Contact Form message from PUfP"
             to_email = Email("info@pullupsforpatriots.com")
