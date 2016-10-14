@@ -4,6 +4,11 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_protect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django import forms
+from django.template.loader import get_template
+
+import sendgrid
+import os
+from sendgrid.helpers.mail import Email, Content, Mail
 
 import urllib.request, urllib.parse
 
@@ -36,8 +41,10 @@ def companyd(request):
 def mcd(request):
     marines = Marine.objects.filter(command=Command.objects.filter(name='Marine Corps Detachment')[0]).order_by(
         '-amount_raised')[:10]
-    donations = Donation.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0], status="PAID")
-    pledges = Pledge.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0], status="PAID")
+    donations = Donation.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0],
+                                        status="PAID")
+    pledges = Pledge.objects.filter(marine__command=Command.objects.filter(name='Marine Corps Detachment')[0],
+                                    status="PAID")
     donation_goal = 10000.00
     donation_total = float(0)
     for donation in donations:
@@ -300,3 +307,27 @@ class PledgeForm(forms.Form):
 
 class SearchForm(forms.Form):
     terms = forms.CharField(label="Search for service members by name:", required=True)
+
+
+def send_confirm_email(pledge_id):
+    the_pledge = Pledge.objects.get(id=pledge_id)
+    template = get_template('fundraising/confirm_template.txt')
+    context = {
+        'donor': str(the_pledge.donor_name),
+        'amount_per_pullup': str(the_pledge.amount_per_pullup),
+        'marine_name': str(the_pledge.marine.name),
+        'pullups': str(the_pledge.marine.pull_ups),
+        'total': str(float(the_pledge.amount_per_pullup) * int(the_pledge.marine.pull_ups))
+    }
+    content = Content('text/plain', template.render(context))
+
+
+    print(content, the_pledge.donor_email)
+    sg = sendgrid.SendGridAPIClient(apikey=open('apikey.txt', 'r').read())
+    from_email = Email("info@pullupsforpatriots.com")
+    subject = "Thank you for your donation to Pull Ups for Patriots!"
+    to_email = Email(str(the_pledge.donor_email))
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print("RESPONSE:" + str(response.status_code))
+    print("done")

@@ -1,0 +1,14 @@
+Thank you for pledging a donation to Pull Ups for Patriots, {{ donor }}!
+
+Our event is now complete, which means we have the pull up totals, so we're sending you this email to inform you
+of what your total donation will be before we collect it from your PayPal account.
+
+Our records show that you pledged {{ amount_per_pullup }} to {{ marine_name }}. Your service member did {{ pullups }} pull ups,
+which brings the total donation to {{ total }}.
+
+We will charge your account in the middle of next week, so if there is any problem with this, please  contact the webmaster
+at anguslmm@gmail.com so that we can get it resolved quickly.
+
+Thank you so much for supporting Pull ups for Patriots, Hope for the Warriors, and all the service members involved!
+
+-PO2 (IW) Angus McLean, Webmaster.

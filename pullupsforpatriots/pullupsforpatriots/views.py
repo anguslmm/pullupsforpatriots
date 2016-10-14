@@ -94,3 +94,4 @@ def contact(request):
     return render(request, 'contact.html', {
         'form': form_class,
     })
+
