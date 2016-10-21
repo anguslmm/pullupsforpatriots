@@ -337,7 +337,7 @@ def pledge_charge(pledge_id):
 
     params = {
         'METHOD': 'DoReferenceTransaction',
-        'REFERENCEID': str(p.token),
+        'REFERENCEID': str(p.billing_agreement_id),
         'AMT': str(p.get_total()),
         'CURRENCYCODE':'USD',
         'PAYMENTACTION':'SALE',
