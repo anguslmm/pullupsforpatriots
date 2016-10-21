@@ -317,7 +317,7 @@ def send_confirm_email(pledge_id):
         'amount_per_pullup': str(the_pledge.amount_per_pullup),
         'marine_name': str(the_pledge.marine.name),
         'pullups': str(the_pledge.marine.pull_ups),
-        'total': str(float(the_pledge.amount_per_pullup) * int(the_pledge.marine.pull_ups))
+        'total': '%.2f' % (float(the_pledge.amount_per_pullup) * int(the_pledge.marine.pull_ups))
     }
     content = Content('text/plain', template.render(context))
 
@@ -327,6 +327,7 @@ def send_confirm_email(pledge_id):
     from_email = Email("info@pullupsforpatriots.com")
     subject = "Thank you for your donation to Pull Ups for Patriots!"
     to_email = Email(str(the_pledge.donor_email))
+    print(to_email)
     mail = Mail(from_email, subject, to_email, content)
     response = sg.client.mail.send.post(request_body=mail.get())
     print("RESPONSE:" + str(response.status_code))
