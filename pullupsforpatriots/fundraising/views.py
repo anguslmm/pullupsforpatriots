@@ -337,7 +337,7 @@ def pledge_charge(pledge_id):
     p = Pledge.objects.get(id=pledge_id)
     if p.status != 'INFO':
         print(p.id, "IS NOT IN CORRECT STATE")
-        return
+        return {}
     m = p.marine
     params = {
         'METHOD': 'DoReferenceTransaction',
@@ -358,3 +358,5 @@ def pledge_charge(pledge_id):
     else:
         print("PROBLEM WITH ID #", p.id)
         print(ret)
+
+    return ret
