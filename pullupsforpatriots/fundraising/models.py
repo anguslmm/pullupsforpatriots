@@ -63,6 +63,9 @@ class Pledge(models.Model):
     billing_agreement_id = models.CharField(max_length=50)
     amount_paid = models.DecimalField('Amount Paid', max_digits=9, decimal_places=2, default=0)
     amount = models.DecimalField(decimal_places=2, max_digits=9, default=0) # this is a straight up bandaid. Sorry.
+
+    def get_total(self):
+        return "%.2f" % round(float(int(self.marine.pull_ups) * self.amount_per_pullup), 2)
     
     def __str__(self):
         donation = str(self.amount_per_pullup) + ' for every pull up ' + str(self.marine) + 'does.'

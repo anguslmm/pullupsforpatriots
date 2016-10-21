@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django import forms
 from django.template.loader import get_template
+import urllib.request, urllib.parse
 
 import sendgrid
 import os
@@ -321,7 +322,6 @@ def send_confirm_email(pledge_id):
     }
     content = Content('text/plain', template.render(context))
 
-
     print(content, the_pledge.donor_email)
     sg = sendgrid.SendGridAPIClient(apikey=open('apikey.txt', 'r').read())
     from_email = Email("info@pullupsforpatriots.com")
@@ -331,3 +331,16 @@ def send_confirm_email(pledge_id):
     response = sg.client.mail.send.post(request_body=mail.get())
     print("RESPONSE:" + str(response.status_code))
     print("done")
+
+def pledge_charge(pledge_id):
+    p = Pledge.objects.get(id=pledge_id)
+
+    params = {
+        'METHOD': 'DoReferenceTransaction',
+        'REFERENCEID': str(p.token),
+        'AMT': str(p.get_total()),
+        'CURRENCYCODE':'USD',
+        'PAYMENTACTION':'SALE',
+    }
+
+    return paypal_request(params)
