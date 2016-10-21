@@ -335,7 +335,10 @@ def send_confirm_email(pledge_id):
 
 def pledge_charge(pledge_id):
     p = Pledge.objects.get(id=pledge_id)
-
+    if p.status != 'INFO':
+        print(p.id, "IS NOT IN CORRECT STATE")
+        return
+    m = p.marine
     params = {
         'METHOD': 'DoReferenceTransaction',
         'REFERENCEID': str(p.billing_agreement_id),
@@ -344,4 +347,14 @@ def pledge_charge(pledge_id):
         'PAYMENTACTION':'SALE',
     }
 
-    return paypal_request(params)
+    ret = paypal_request(params)
+
+    if ret['ACK'] == "Success":
+        m.amount_raised = float(m.amount_raised) + float(p.get_total())
+        m.save()
+        p.status = "PAID"
+        p.save()
+        print("SUCCESS:", p.id)
+    else:
+        print("PROBLEM WITH ID #", p.id)
+        print(ret)
