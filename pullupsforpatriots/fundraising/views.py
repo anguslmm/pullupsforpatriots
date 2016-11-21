@@ -85,7 +85,7 @@ def af3rd(request):
     for donation in donations:
         donation_total += float(donation.amount)
     for pledge in pledges:
-        donation_total += float(pledge.amount_paid)
+        donation_total += float(pledge.amount_per_pullup) * float(pledge.marine.pull_ups)
     donation_progress = (donation_total / donation_goal) * 100
     form = SearchForm()
     return render(request, 'fundraising/3rdis.html',
