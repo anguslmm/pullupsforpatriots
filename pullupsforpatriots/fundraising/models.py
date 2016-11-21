@@ -20,7 +20,7 @@ class Marine(models.Model):
         return str(self.name)
 
     def get_amount_per_pullup(self):
-        amt = Pledge.objects.filter(marine__name=self.name).aggregate(models.Sum('amount_per_pullup'))['amount_per_pullup__sum']
+        amt = Pledge.objects.filter(marine__name=self.name).filter(status="PAID").aggregate(models.Sum('amount_per_pullup'))['amount_per_pullup__sum']
         return amt if str(amt) != "None" else "0.00"
     
     def __str__(self):
