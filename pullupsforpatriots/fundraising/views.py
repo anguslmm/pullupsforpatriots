@@ -80,13 +80,14 @@ def af3rd(request):
     marines = Marine.objects.filter(command=Command.objects.filter(name='3rd IS')[0]).order_by('-amount_raised')[:10]
     donations = Donation.objects.filter(marine__command=Command.objects.filter(name='3rd IS')[0], status="PAID")
     pledges = Pledge.objects.filter(marine__command=Command.objects.filter(name='3rd IS')[0], status="PAID")
-    donation_goal = 10000.00
+    donation_goal = 50000.00
     donation_total = float(0)
     for donation in donations:
         donation_total += float(donation.amount)
     for pledge in pledges:
         donation_total += float(pledge.amount_per_pullup) * float(pledge.marine.pull_ups)
     donation_progress = (donation_total / donation_goal) * 100
+
     form = SearchForm()
     return render(request, 'fundraising/3rdis.html',
                   {'marines': marines, 'donation_total': donation_total, 'donation_progress': donation_progress,
